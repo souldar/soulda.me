@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import axios from 'axios';
+import { axios } from '../axios';
 import MarkdownIt from 'markdown-it';
 import codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -64,7 +64,7 @@ export const Admin: React.FC = () => {
 
 function releaseArticle(article: any) {
   axios
-    .post("http://localhost:7001/article", { article })
+    .post("article", { article })
     .then(res => {
       console.log("release success", res);
     })
