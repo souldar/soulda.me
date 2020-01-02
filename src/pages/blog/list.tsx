@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Article } from '../../models';
 import './list.css';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { axios } from '../axios';
 
 export const BlogList: React.FC =  () => {
@@ -21,12 +21,14 @@ export const BlogList: React.FC =  () => {
     <div className="list-container">
       <div className="list">
         {articles.map((article: Article, index) => {
+          const updateTime = article.updateTime ? new Date(article.updateTime) : new Date();
           return (
             <div key={`${index}${article.id}`} className="card" onClick={() => {
               history.push(`/article/${article.id}`);
             }}>
               <h1>{article.title}</h1>
               <h2>{article.subtitle}</h2>
+            <p>{`${updateTime.getFullYear()}-${updateTime.getMonth() + 1}-${updateTime.getDate()}`}</p>
             </div>
           );
         })}
